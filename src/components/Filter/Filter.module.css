@@ -13,8 +13,8 @@
   padding: 5px;
   border: none;
   border-radius: 5px;
-  background-color: rgba(122, 43, 226, 0.137);
+  background-color: #ccc;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-  outline: 1px solid rgba(142, 18, 167, 0.322);
+  outline: 1px solid rgba(110, 167, 18, 0.322);
 }

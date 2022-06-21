@@ -3,6 +3,7 @@
   align-items: center;
   flex-direction: column;
   width: 300px;
+  
 }
 .label {
   font-family: Roboto;
@@ -18,13 +19,13 @@
   padding: 5px;
   border: none;
   border-radius: 5px;
-  background-color: rgba(122, 43, 226, 0.137);
+  background-color: #ccc;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-  outline: 1px solid rgba(142, 18, 167, 0.322);
+  outline: 1px solid rgba(110, 167, 18, 0.322);
 }
 input:focus {
-  outline: 3px solid rgba(164, 60, 185, 0.541);
+  outline: 3px solid rgba(232, 139, 33, 0.264);;
 }
 .button {
   display: block;
@@ -39,12 +40,12 @@ input:focus {
   color: #525151;
   border-radius: 5px;
   border: none;
-  background-color: rgba(122, 43, 226, 0.24);
-  outline: 2px solid rgba(164, 60, 185, 0.582);
+  background-color: rgba(232, 139, 33, 0.264);
+  outline: 2px solid rgb(251, 195, 76);
   cursor: pointer;
 }
 .button:hover {
-  background-color: rgba(122, 43, 226, 0.281);
+  background-color: rgba(232, 139, 33, 0.264);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   outline: none;

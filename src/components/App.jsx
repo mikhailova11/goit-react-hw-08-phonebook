@@ -1,25 +1,46 @@
+import AppBar from "../views/AppBar/AppBar";
+import { Route, Routes } from "react-router-dom";
+import { Suspense, useEffect } from "react";
+import { FaSpinner } from 'react-icons/fa';
+import Phonebook from "../views/Phonebook/Phonebook";
+import HomePage from "../views/HomePage/HomePage";
+import RegisterView from "../components/RegisterView/RegisterView";
+import LoginView from "../components/LoginView/LoginView";
+import { useDispatch } from "react-redux";
+import { fetchCurrentUser } from "redux/operaitions";
+// import PrivatRoute from "./PrivatRoute";
 
-import ContactForm from "./ContactForm";
-import Filter from "./Filter";
-import ContactList from "./ContactList";
-import s from "./App.module.css";
+
+const fallbackStyle = {
+  height: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: 60,
+  color: '#525151'
+}
 
 
 
-export default function App() {
+export default function App () {
 
-  return (
-    <div className={s.container}>
-        <h2 className={s.title}>Phonebook</h2>
-        <ContactForm />
+const dispatch = useDispatch()
 
-        <h2 className={s.title}>Contacts</h2>
-        <Filter />
-        <ContactList/>
+useEffect(()=>{ dispatch(fetchCurrentUser())},[dispatch])
 
-    </div>
-    
-)
+  return (<>
+    <AppBar/>
+      <Suspense fallback={<div style={fallbackStyle}><FaSpinner/></div>}>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+            <Route path="register" element={<RegisterView />} />
+            <Route path="login" element={<LoginView/>}/>
+            <Route path="contacts" element={<Phonebook/>}/>
+           <Route path="*" element={<HomePage/>} />
+        </Routes>
+      </Suspense>
+      </>
+  );
+};
 
-  
- }
+

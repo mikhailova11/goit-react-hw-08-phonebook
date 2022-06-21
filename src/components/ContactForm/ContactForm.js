@@ -1,7 +1,8 @@
 import {useState} from "react";
 import s from "./ContactForm.module.css";
-import {addContact} from '../../redux/operation'
+import {addContact} from '../../redux/operaitions'
 import { useDispatch, useSelector } from "react-redux";
+import Container from "components/Container/Container";
 
 export default function ContactForm () {
 
@@ -54,6 +55,7 @@ export default function ContactForm () {
 
 
     return (
+        <Container>
         <form className={s.form} onSubmit = {handleSubmit}>
             <label className={s.label}>
                 Name
@@ -82,5 +84,6 @@ export default function ContactForm () {
 
             <button className={s.button} type="submit" >Add contact</button>
         </form>
+        </Container>
     )
 }
