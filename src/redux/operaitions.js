@@ -12,11 +12,14 @@ const token = {
   }
 }
 
-export const fetchContacts = createAsyncThunk('contacts/fetchContacts',
-  async() => { const {data} =  await axios.get('/contacts')
-  return data
-  }   
-) 
+export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async() => { 
+  try {
+    const {data} =  await axios.get('/contacts')
+    return data
+  } catch (error) {
+    alert(error.message)
+  }  
+}) 
 
 export const addContact = createAsyncThunk('phonebook/addContact', async contact => {
   try {
@@ -27,28 +30,42 @@ export const addContact = createAsyncThunk('phonebook/addContact', async contact
   }
 });
 
-export const deleteContact =  createAsyncThunk('contacts/deleteContact',
-async(contactId) => {
-  await axios.delete(`/contacts/${contactId}`)
-  return contactId
-}
-)
+export const deleteContact =  createAsyncThunk('contacts/deleteContact', async(contactId) => {
+  try {
+    await axios.delete(`/contacts/${contactId}`)
+    return contactId
+  } catch (error) {
+    alert(error.message)
+  }
+})
 
 export const newUser = createAsyncThunk('auth/newUser', async user => {
-  const { data } = await axios.post('/user/signup', user);
-  token.set(data.token)
-  return data;
+  try {
+    const { data } = await axios.post('/users/signup', user);
+    token.set(data.token)
+    return data;
+  } catch (error) {
+    alert(error.message)
+  }
 });
 
 export const loginUser = createAsyncThunk('auth/loginUser', async user => {
-  const { data } = await axios.post('/user/login', user);
-  token.set(data.token)
-  return data;
+  try {
+    const { data } = await axios.post('/users/login', user);
+    token.set(data.token)
+    return data;
+  } catch (error) {
+    alert(error.message)
+  }
 });
 
 export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
-  await axios.post('/user/logout');
-  token.unset()
+  try {
+    await axios.post('/users/logout');
+    token.unset()
+  } catch (error) {
+    console.log(error.message)
+  }
 });
 
 export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
@@ -60,10 +77,10 @@ export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunk
  }
  token.set(token);
  try {
-  const { data } = await axios.get('/user/current');
+  const { data } = await axios.get('/users/current');
   return data;
  } catch (error) {
-  console.error()
+  alert(error.message)
  }
   
 });

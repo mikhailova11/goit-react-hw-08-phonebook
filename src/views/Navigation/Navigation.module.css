@@ -14,7 +14,8 @@
 }
 
 .navLink:focus,
-.navLink:hover{
+.navLink:hover,
+.navLink:active{
     color: #fff;
     
 

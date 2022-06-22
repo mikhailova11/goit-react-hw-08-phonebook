@@ -1,3 +1,9 @@
-export const getIsLogIn = state => state.auth.isLogin;
+ const getIsLogIn = state => state.auth.auth.isLogin;
 
-export const getUserName = state => state.auth.user
+ const getUserName = state => state.auth.auth.user.name
+
+const selectors = {
+    getIsLogIn, getUserName
+}
+
+export default selectors

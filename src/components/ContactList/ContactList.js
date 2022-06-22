@@ -1,9 +1,8 @@
 
 import {React } from "react";
 import s from "./ContactList.module.css";
-import { deleteContact, fetchContacts} from '../../redux/operaitions'
+import { deleteContact} from '../../redux/operaitions'
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 
 
 const getVisible = state => {
@@ -21,8 +20,6 @@ export default function ContactList () {
 
     const contacts = useSelector( getVisible);
     const dispatch = useDispatch();
-    
-    useEffect(()=>{dispatch(fetchContacts())},[dispatch])
 
         return ( 
             

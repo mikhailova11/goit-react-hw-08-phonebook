@@ -15,14 +15,11 @@ export default function RegisterView() {
     const handleChange =({target: {name, value}}) => {
         switch (name) {
             case 'name':
-                 setName(value);
-                break;
+                return setName(value);
             case 'email':
-                 setEmail(value);
-                break;
+                return setEmail(value);
             case 'password':
-                 setPassword(value);
-                 break;
+                return setPassword(value);
             default:
                 return;
         }

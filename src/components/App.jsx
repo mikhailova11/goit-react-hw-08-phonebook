@@ -36,7 +36,7 @@ useEffect(()=>{ dispatch(fetchCurrentUser())},[dispatch])
             <Route path="register" element={<RegisterView />} />
             <Route path="login" element={<LoginView/>}/>
             <Route path="contacts" element={<Phonebook/>}/>
-           <Route path="*" element={<HomePage/>} />
+            <Route path="*" element={<HomePage/>} />
         </Routes>
       </Suspense>
       </>
