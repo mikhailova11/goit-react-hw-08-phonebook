@@ -1,8 +1,7 @@
 .form {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  width: 300px;
+  justify-content: center;
   
 }
 .label {
@@ -13,9 +12,13 @@
   color: #757575;
   margin-top: 10px;
 }
+.label:not(:last-child){
+  margin-right: 15px;
+}
 
 .input {
   margin-left: 10px;
+  height: 20px;
   padding: 5px;
   border: none;
   border-radius: 5px;
@@ -23,6 +26,7 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   outline: 1px solid rgba(110, 167, 18, 0.322);
+  cursor: pointer;
 }
 input:focus {
   outline: 3px solid rgba(232, 139, 33, 0.264);;
@@ -35,13 +39,13 @@ input:focus {
   letter-spacing: 0.03em;
   margin-top: 10px;
   width: 100px;
-  height: auto;
+  height: 30px;
   padding: 5px;
   color: #525151;
   border-radius: 5px;
   border: none;
   background-color: rgba(232, 139, 33, 0.264);
-  outline: 2px solid rgb(251, 195, 76);
+  outline: none;
   cursor: pointer;
 }
 .button:hover {
@@ -49,4 +53,5 @@ input:focus {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   outline: none;
+  color: black;
 }

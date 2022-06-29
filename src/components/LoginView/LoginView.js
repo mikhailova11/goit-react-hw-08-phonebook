@@ -46,7 +46,7 @@ export default function LogInView() {
                     <input className={s.input} type="password" name="password" value={password} onChange={handleChange} />
                 </label>
 
-                <button className={s.button} type="submit">Log in</button>
+                <button className={s.button} type="submit" >Log in</button>
 
             </form>
         </div>

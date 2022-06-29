@@ -1,14 +1,21 @@
 .container {
     background-color: #fff;
     display: inline-block;
-    margin-left: 0 auto;
+    margin: 20px;
     outline: 2px solid  #525151;
     padding: 10px;
-    width: 500px;
+    width: 550px;
     border-radius: 3px;
     background-color: #fff;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
       0px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  .center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
   }
   .container:hover {
     outline: 2px solid rgb(251, 195, 76);
@@ -19,4 +26,16 @@
   .contactList{
     display: flex;
     flex-direction: column;
+  }
+  .title{
+    display: block;
+    margin: 0;
+    margin-top: 10px;
+    text-align: center;
+    color: #525151;
+    font-family: Roboto;
+    font-size: 17px;
+    line-height: 13px;
+    letter-spacing: 0.01em;
+   
   }

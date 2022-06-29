@@ -1,17 +1,19 @@
-import {useState} from "react";
-import s from "./ContactForm.module.css";
-import {addContact} from '../../redux/operaitions'
-import { useDispatch, useSelector } from "react-redux";
-import Container from "components/Container/Container";
+import { useState} from "react";
+import s from "../Editor/Editor.module.css";
+import { updateContact} from '../../redux/operaitions'
+import { useDispatch } from "react-redux";
 
-export default function ContactForm () {
 
-    const contacts = useSelector(state => (state.contacts.items));
 
+
+export default function Editor (idCurrentContact) {
     const dispatch = useDispatch()
 
-    const [name, setName] = useState('');
-    const [number, setNumber] = useState('');
+    const [newName, setNewName] = useState('');
+    const [newNumber, setNewNumber] = useState('');
+    const id = idCurrentContact.id
+ 
+    
     
 
     const handleChange = (e) => {
@@ -19,11 +21,11 @@ export default function ContactForm () {
 
         switch (name) {
             case 'name':
-                setName(value)
+                setNewName(value)
                 break;
 
             case 'number':
-                setNumber(value)
+                setNewNumber(value)
                 break;
         
             default:
@@ -31,36 +33,23 @@ export default function ContactForm () {
         }
     }
 
-
-    const  reset = () => {
-        setName('');
-        setNumber('');
-    }
     
     const handleSubmit = (e) =>{
         e.preventDefault();
-        
-        const sameContact  = contacts.find(contact => {
-            return contact.name.toLowerCase() === name.toLowerCase();
-        })
+        dispatch(updateContact({id,  newName, newNumber}))
 
-            if (!sameContact ){
-            dispatch(addContact({name, number}));
-            reset();
-            return;
-            } 
-            alert(`${name} is already to contacts`); 
-            reset();
-        }
+        
+    } 
 
 
     return (
-        <Container>
+
         <form className={s.form} onSubmit = {handleSubmit}>
             <label className={s.label}>
-                Name
+            
                 <input className={s.input}
-                value={name}
+                placeholder='Enter a new name'
+                value={newName}
                 type="text"
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -70,9 +59,10 @@ export default function ContactForm () {
                 />
             </label>
             <label className={s.label}>
-                Number
+            
                 <input className={s.input}
-                value={number}
+                placeholder='Enter a new number'
+                value={newNumber}
                 type="tel"
                 name="number"
                 pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -82,8 +72,8 @@ export default function ContactForm () {
                 />
             </label>
 
-            <button className={s.button} type="submit" title='add'>Add contact</button>
+            <button className={s.button} type="submit" title='save'>Save</button>
         </form>
-        </Container>
+
     )
 }

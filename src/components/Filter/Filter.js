@@ -16,6 +16,7 @@ export default function Filter() {
         <label className={s.label}>
         Find contacts by name
         <input className={s.input}
+                        title=' find contacts by name'
                         type="text"
                         name="name"
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"

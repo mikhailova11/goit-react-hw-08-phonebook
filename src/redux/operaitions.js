@@ -12,7 +12,15 @@ const token = {
   }
 }
 
-export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async() => { 
+export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async(_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persisterToken = state.auth.auth.token;
+
+ 
+  if(persisterToken === null){
+   return thunkAPI.rejectWithValue();
+  } 
+  token.set(persisterToken)
   try {
     const {data} =  await axios.get('/contacts')
     return data
@@ -21,7 +29,7 @@ export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async() 
   }  
 }) 
 
-export const addContact = createAsyncThunk('phonebook/addContact', async contact => {
+export const addContact = createAsyncThunk('phonebook/addContact', async (contact) => {
   try {
     const { data } = await axios.post('/contacts', contact);
   return data;
@@ -38,6 +46,21 @@ export const deleteContact =  createAsyncThunk('contacts/deleteContact', async(c
     alert(error.message)
   }
 })
+
+export const updateContact = createAsyncThunk('phonebook/updateContact', async (contactInfo) => {
+const contactId = contactInfo.id
+  const contactNew = {
+    "name": contactInfo.newName,
+    "number": contactInfo.newNumber
+  }
+
+  try {
+     await axios.patch(`/contacts/${contactId}`, contactNew)
+     return contactId
+  } catch (error) {
+    alert(error.message)
+  }
+});
 
 export const newUser = createAsyncThunk('auth/newUser', async user => {
   try {
@@ -64,24 +87,25 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
     await axios.post('/users/logout');
     token.unset()
   } catch (error) {
-    console.log(error.message)
+    alert(error.message)
   }
 });
 
 export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
  const state = thunkAPI.getState();
- const token = state.auth.token;
+ const persisterToken = state.auth.auth.token;
 
- if(token === null){
+ if(persisterToken === null){
   return thunkAPI.rejectWithValue();
- }
- token.set(token);
+ } 
  try {
-  const { data } = await axios.get('/users/current');
-  return data;
+  token.set(persisterToken)
+  const {data} =  await axios.get('/users/current');
+  return data
  } catch (error) {
   alert(error.message)
  }
   
 });
   
+

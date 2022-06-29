@@ -1,0 +1,60 @@
+.form {
+    display: flex;
+    flex-direction: column;
+  }
+  .label {
+    margin-top: 15px;
+  }
+
+  .input::placeholder{
+    color: black;
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 10px;
+    letter-spacing: 0.01em;
+    color: #757575;
+  }
+  
+  .input {
+    margin-left: 10px;
+    height: 20px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 0.426);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+      0px 2px 1px rgba(0, 0, 0, 0.2);
+    outline: 1px solid rgba(110, 167, 18, 0.322);
+    cursor: pointer;
+  }
+  input:focus, 
+  input:hover{
+    background-color: rgba(232, 139, 33, 0.055);
+  }
+  .button {
+    display: block;
+    margin: auto;
+    font-family: Roboto;
+    font-size: 15px;
+    line-height: 13px;
+    letter-spacing: 0.03em;
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    color: #525151;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(232, 139, 33, 0.264);
+    cursor: pointer;
+
+
+  }
+  .button:hover {
+    background-color: rgba(232, 139, 33, 0.264);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+      0px 2px 1px rgba(0, 0, 0, 0.2);
+    outline: none;
+    color: black;
+  }
+  

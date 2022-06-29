@@ -9,7 +9,7 @@ import {
   REGISTER } from 'redux-persist';
 
 import logger from 'redux-logger';
-import { addContact, deleteContact, fetchContacts } from './operaitions';
+import { addContact, deleteContact, fetchContacts, updateContact } from './operaitions';
 import persistStore from 'redux-persist/es/persistStore';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
@@ -19,11 +19,11 @@ import authSlice from "../redux/slice";
 export const filterChange = createAction('filterChange');
 
 
-const items = createReducer([], {
+const items = createReducer({}, {
   [fetchContacts.fulfilled]: (_, {payload}) => payload,
   [addContact.fulfilled]: (state, { payload }) => [payload, ...state],
   [deleteContact.fulfilled]: (state, { payload }) => state.filter(contact => contact.id !== payload),
-  
+  [updateContact.fulfilled]: (state, { payload }) => state,
 });
 
 const filter = createReducer('', {
@@ -44,12 +44,13 @@ const authPersistConfig = {
 }
 
 const  authReducer = combineReducers({
-  auth: authSlice.reducer,
+  auth: persistReducer(authPersistConfig,authSlice.reducer),
 });
 
 
+
 export const store = configureStore({
-reducer: { auth: persistReducer(authPersistConfig, authReducer),
+reducer: { auth: authReducer,
   contacts: contactsReducer },
   middleware: getDefaultMiddleware =>
   getDefaultMiddleware({
@@ -61,6 +62,8 @@ devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);
-
-
+  
+  
+  
+  
 
