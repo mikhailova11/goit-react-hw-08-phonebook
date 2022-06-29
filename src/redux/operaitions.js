@@ -25,7 +25,7 @@ export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async(_,
     const {data} =  await axios.get('/contacts')
     return data
   } catch (error) {
-    alert(error.message)
+    console.log(error.message)
   }  
 }) 
 
@@ -34,7 +34,7 @@ export const addContact = createAsyncThunk('phonebook/addContact', async (contac
     const { data } = await axios.post('/contacts', contact);
   return data;
   } catch (error) {
-    alert(error.message)
+    console.log(error.message)
   }
 });
 
@@ -43,7 +43,7 @@ export const deleteContact =  createAsyncThunk('contacts/deleteContact', async(c
     await axios.delete(`/contacts/${contactId}`)
     return contactId
   } catch (error) {
-    alert(error.message)
+    console.log(error.message)
   }
 })
 
@@ -58,7 +58,7 @@ const contactId = contactInfo.id
      await axios.patch(`/contacts/${contactId}`, contactNew)
      return contactId
   } catch (error) {
-    alert(error.message)
+    console.log(error.message)
   }
 });
 
@@ -68,7 +68,7 @@ export const newUser = createAsyncThunk('auth/newUser', async user => {
     token.set(data.token)
     return data;
   } catch (error) {
-    alert(error.message)
+    console.log(error.message)
   }
 });
 
@@ -78,7 +78,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async user => {
     token.set(data.token)
     return data;
   } catch (error) {
-    alert(error.message)
+    console.log(error.message)
   }
 });
 
@@ -87,7 +87,7 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async () => {
     await axios.post('/users/logout');
     token.unset()
   } catch (error) {
-    alert(error.message)
+    console.log(error.message)
   }
 });
 
@@ -103,7 +103,7 @@ export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunk
   const {data} =  await axios.get('/users/current');
   return data
  } catch (error) {
-  alert(error.message)
+  console.log(error.message)
  }
   
 });
